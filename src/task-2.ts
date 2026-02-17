@@ -1,31 +1,40 @@
-// Задача 2. Інтерфейси
-// У цьому фрагменті коду є об'єкт product, який описує товар.
+// Задача 2
+// Опис: Є функція, яка приймає суму (число) та тип валюти.
 
-// const product = {
-//   id: 1,
-//   title: "Tablet",
-//   description: "Compact and fast",
-// };
-
-// console.log(`Product: ${JSON.stringify(product)}`);
+// function convertCurrency({amount, currency}) {
+//   console.log(`Converting ${amount} to ${currency}`);
+// }
 
 // Завдання:
-// Створи інтерфейс Product, який описує структуру цього об’єкта.
-// Зроби поле id тільки для читання – воно не повинно змінюватись після створення об’єкта.
-// Зроби поле description необов’язковим – не всі товари можуть його мати.
-// Типізуй змінну product за допомогою створеного інтерфейсу.
-// Залиш властивості обʼєкта product і їх значення без змін.
+// Типізуйте параметри функції дозволивши властивості currency лише одне із значень "USD", "EUR", "UAH".
+// Типізуйте повернення функції.
 
-interface Product {
-  readonly id: number;
-  title: string;
-  description?: string;
+// ----------------------------
+
+// type Currency = "USD" | "EUR" | "UAH";
+
+// function convertCurrency({
+//   amount,
+//   currency,
+// }: {
+//   amount: number;
+//   currency: Currency;
+// }): void {
+//   console.log(`Converting ${amount} to ${currency}`);
+// }
+
+// ---------------------------
+
+type Currency = "USD" | "EUR" | "UAH";
+
+interface ConvertCurrencyParams {
+  amount: number;
+  currency: Currency;
 }
 
-const product: Product = {
-  id: 1,
-  title: "Tablet",
-  description: "Compact and fast",
-};
+function convertCurrency({ amount, currency }: ConvertCurrencyParams): void {
+  console.log(`Converting ${amount} to ${currency}`);
+}
 
-console.log(`Product: ${JSON.stringify(product)}`);
+convertCurrency({ amount: 100, currency: "USD" }); // ✅
+convertCurrency({ amount: 100, currency: "PLN" }); // ❌ помилка
