@@ -1,26 +1,27 @@
-// Задача 7. Типізація Promise
-// Функція getMessage повертає проміс, який через затримку повертає рядок.
+// Задача 7
 
-// function getMessage() {
-//   return new Promise((resolve) => {
-//     setTimeout(() => {
-//       resolve("Hello from TS");
-//     }, 1000);
-//   });
-// }
-
-// getMessage().then(result => console.log(result));
+// const users = [
+//   { name: "Alice", age: 30 },
+//   { name: "Bob", age: 25 },
+// ];
 
 // Завдання:
-// Додай до функції явну типізацію, яка вказує, що вона повертає проміс.
-// Переконайся, що значення, з яким виконається проміс, – це рядок (string).
+// Створіть інтерфейс User, який описує структуру об’єкта з іменем і віком.
+// Типізуйте змінну users.
+// Додайте ще одного користувача до масиву, дотримуючись структури.
+// Переконайтеся, що TypeScript не дозволяє додати об’єкт без обов’язкових полів (name, age).
 
-function getMessage(): Promise<string> {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve("Hello from TS");
-    }, 1000);
-  });
+interface User {
+  name: string;
+  age: number;
 }
 
-getMessage().then((result) => console.log(result));
+const users: User[] = [
+  { name: "Alice", age: 30 },
+  { name: "Bob", age: 25 },
+  { name: "Sergio", age: 55 },
+];
+
+users.push({ name: "Tom" }); // ❌ помилка — немає age
+users.push({ age: 40 }); // ❌ помилка — немає name
+users.push({ name: "Eva", age: 22 }); // ✅
