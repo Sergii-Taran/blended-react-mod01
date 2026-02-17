@@ -1,24 +1,53 @@
-// Задача 6. Узагальнені типи
-// Функція getFirstElement приймає масив і повертає його перший елемент.
+// Задача 6
 
-// function getFirstElement(arr) {
-//   return arr[0];
-// }
+// const user = {
+//   name: "Alice",
+//   address: {
+//     city: "Kyiv"
+//   }
+// };
 
-// getFirstElement([1, 2, 3]);
-// getFirstElement(["a", "b", "c"]);
-// getFirstElement([true, false, true]);
+// console.log(user.address?.city);
 
 // Завдання:
-// Зроби функцію узагальненою, використовуючи тип T, щоб вона працювала з масивами будь-якого типу.
-// Додай явну типізацію дженериків у виклики функцій.
-// Переконайся, що тип елемента, який повертається, точно відповідає типу елементів у масиві.
-// Перевір, що TypeScript не дозволяє передати масив змішаних типів без відповідного типу.
+// Створіть тип для user.
+// Зробіть address необов’язковим.
+// Перевірте, що user.address?.city не викликає помилки.
 
-function getFirstElement<T>(arr: T[]): T {
-  return arr[0];
+// ----------------------
+
+// interface User {
+//   name: string;
+//   address?: {
+//     city: string;
+//   };
+// }
+
+// const user: User = {
+//   name: "Alice",
+//   address: {
+//     city: "Kyiv",
+//   },
+// };
+
+// console.log(user.address?.city);
+
+// ----------------------
+
+interface Address {
+  city: string;
 }
 
-getFirstElement<number>([1, 2, 3]);
-getFirstElement<string>(["a", "b", "c"]);
-getFirstElement<boolean>([true, false, true]);
+interface User {
+  name: string;
+  address?: Address;
+}
+
+const user: User = {
+  name: "Alice",
+  address: {
+    city: "Kyiv",
+  },
+};
+
+console.log(user.address?.city);
