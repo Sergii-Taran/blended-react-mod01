@@ -1,34 +1,53 @@
-// Задача 5. Union Type
-// Функція logStatus приймає рядок status і виводить відповідне повідомлення.
+// Задача 5
 
-// function logStatus(status) {
-//   if (status === "loading") {
-//     console.log("Loading...");
-//   } else if (status === "success") {
-//     console.log("Success!");
-//   } else if (status === "error") {
-//     console.log("Something went wrong");
-//   }
+// function createUser({name, age}) {
+//   return {
+//     name,
+//     age,
+//     isAdmin: false
+//   };
 // }
 
-// logStatus("loading");
+// createUser({ name: "Alice", age: 30 });
 
 // Завдання:
-// Типізуй параметр status так, щоб дозволити тільки три конкретні рядкові значення: "loading", "success", "error"
-// Переконайся, що TypeScript не дозволяє передати будь-яке інше значення.
-// Типізуй повернення функції, зауваж що вона нічого явно не повертає.
-// Залиш реалізацію функції без змін.
+// Типізуйте функцію повністю: параметри і повернення функції.
 
-type Status = "loading" | "success" | "error";
+// -----------------------------
 
-function logStatus(status: Status): void {
-  if (status === "loading") {
-    console.log("Loading...");
-  } else if (status === "success") {
-    console.log("Success!");
-  } else if (status === "error") {
-    console.log("Something went wrong");
-  }
+// function createUser({ name, age }: { name: string; age: number }): {
+//   name: string;
+//   age: number;
+//   isAdmin: boolean;
+// } {
+//   return {
+//     name,
+//     age,
+//     isAdmin: false,
+//   };
+// }
+
+// createUser({ name: "Alice", age: 30 });
+
+// -----------------------------
+
+interface CreateUserParams {
+  name: string;
+  age: number;
 }
 
-logStatus("loading");
+interface User {
+  name: string;
+  age: number;
+  isAdmin: boolean;
+}
+
+function createUser({ name, age }: CreateUserParams): User {
+  return {
+    name,
+    age,
+    isAdmin: false,
+  };
+}
+
+createUser({ name: "Alice", age: 30 });
