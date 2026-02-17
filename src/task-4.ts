@@ -1,30 +1,13 @@
-// Задача 4. Функції
-// Функція printUserInfo виводить інформацію про користувача, включаючи ім’я, вік і (опціонально) email.
+// Задача 4
+// Опис: Є масив, який містить розміри екрана у пікселях.
 
-// function printUserInfo(name, age, email) {
-//   console.log("Name:", name);
-//   console.log("Age:", age);
-//   if (email) {
-//     console.log("Email:", email);
-//   }
-// }
-
-// printUserInfo("Alice", 30);
-// printUserInfo("Bob", 25, "bob@mail.com");
+// const dimensions = [1920, 1080];
 
 // Завдання:
-// Додай явну типізацію до параметрів функції: name, age та email.
-// Зроби параметр email опціональним – щоб функція могла працювати як з ним, так і без нього.
-// Типізуй повернення функції, зауваж що вона нічого явно не повертає.
-// Залиш реалізацію функції без змін.
+// Додайте до змінної dimensions явну типізацію.
+// Переконайтеся, що TypeScript не дозволяє додавати до масиву значення інших типів (наприклад, рядки).
 
-function printUserInfo(name: string, age: number, email?: string): void {
-  console.log("Name:", name);
-  console.log("Age:", age);
-  if (email) {
-    console.log("Email:", email);
-  }
-}
+const dimensions: number[] = [1920, 1080];
 
-printUserInfo("Alice", 30);
-printUserInfo("Bob", 25, "bob@mail.com");
+dimensions.push(1440); // ✅ працює
+dimensions.push("1080"); // ❌ помилка TS
